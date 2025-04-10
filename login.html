@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+    <!-- Loaders -->
+    <div class="spinner"></div>
+    <img src="https://wallpaperbat.com/img/788156-farm-machinery-wallpaper-hd-massey-ferguson-wallpaper-hd-1920x1080-wallpaper-teahubio.jpg">
+    <div class="login">
+        <h1>Farmer's Login</h1>
+        <fieldset>
+            <legend>Enter your Farmer's ID</legend>
+            <input type="text" id="farmer_id" required placeholder="Farmer's ID" required oninput="farmerID()" maxlength="12" pattern="\d{12}">
+
+            <legend>Enter your mobile number</legend>
+            <input type="text" placeholder="Mobile number" maxlength="10" pattern="\d{10}" required oninput="checkPhoneNumber()" id="PhoneNumber">
+        </fieldset>
+
+        <div id="recaptcha-container"></div>
+        
+        <button onclick="sendOTP()" id="OTP">Send OTP</button>
+
+        <input placeholder="Enter OTP" required class="otp-input" id="otp_input" type="number" disabled>
+    
+        <button id="submit" type="submit" onclick="login()">Submit</button>
+
+    </div>
+
+    <p id="status"></p>
+
+    <script>
+        function farmerID()
+        {
+            let farmerID=document.getElementById("farmer_id");
+            farmerID.value = farmerID.value.replace(/\D/g, '').slice(0, 12)
+
+            if(farmerID.length>4){
+                farmerID=farmerID.slice(0,4)+'hello'+farmerID.slice(4,8)
+            }
+
+        }
+        function checkPhoneNumber()
+        {
+            let PhoneNumber=document.getElementById("PhoneNumber")
+            let OTP=document.getElementById("OTP")
+            PhoneNumber.value = PhoneNumber.value.replace(/\D/g, '').slice(0, 10)
+
+            OTP.style.opacity="0%";
+            if(PhoneNumber.value.length===10){
+                OTP.classList.add("otpview")
+                OTP.style.opacity="100%";
+            }
+            else{
+                OTP.classList.remove("otpview")
+                OTP.style.opacity="0%";
+            }
+        }
+
+        
+
+    </script>
+
+<script src="register.js"></script>
+</body>
+</html>

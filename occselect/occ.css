@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*
+{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: #000;
+    font-family: "Poppins", sans-serif;
+    overflow: hidden;
+    animation: trans 2s linear;
+}
+@keyframes trans
+{
+    0%
+    {
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+/* Loaders */
+.spinner {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: conic-gradient(#0000 10%,#474bff);
+    -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 9px),#000 0);
+    animation: spinner-zp9dbg 1s linear;
+    position: fixed;
+    top: 50%;
+    z-index: 2;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    opacity: 0;
+    background-color: #fff;
+ }
+ 
+ @keyframes spinner-zp9dbg {
+    0%{
+        opacity: 0;
+    }
+    50% {
+       transform: translate(-50%,-50%)rotate(1turn);
+       opacity: 1;
+    }
+    100%
+    {
+        
+        opacity: 0;
+    }
+ }
+h1 
+{
+    color: #fff;
+    font-size: 1.8em;
+    width: 100%;
+    text-align: center;
+    margin-top: 30%;
+    position: absolute;
+}
+.bg-img 
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 50%;
+}
+.category
+{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    top: 55%;
+    display: block;
+}
+.farmer
+{
+    width: 100%;
+    border-radius: 50%;
+    box-shadow: 1px 1px 50px white;
+    margin-top: 50px;
+}
+.farmer1 p 
+{
+    color: #fff;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.5em;
+}
+.consumer{
+    width: 80%;
+    box-shadow: 1px 1px 50px white;
+    margin-top: 50px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;   
+    position: relative;
+    left: 50%;
+    transform: translate(-50%,-10%);
+}
+.consumer1 p 
+{
+    color: #fff;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.5em;
+}
