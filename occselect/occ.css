@@ -4,11 +4,16 @@
     margin: 0;
     padding: 0;
 }
+html 
+{
+    scroll-behavior: smooth;
+}
 body{
     background: #000;
     font-family: "Poppins", sans-serif;
-    overflow: hidden;
     animation: trans 2s linear;
+    -webkit-tap-highlight-color: transparent;
+    overflow: hidden;
 }
 @keyframes trans
 {
@@ -62,7 +67,7 @@ h1
 }
 .bg-img 
 {
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     opacity: 50%;
@@ -74,6 +79,10 @@ h1
     transform: translate(-50%,-50%);
     top: 55%;
     display: block;
+}
+.category a 
+{
+    text-decoration: none;
 }
 .farmer
 {
@@ -106,4 +115,96 @@ h1
     text-align: center;
     font-weight: 600;
     font-size: 1.5em;
+}
+.consumer-login 
+{
+    position: absolute;
+    top: 50%;
+    left: 300%;
+    transform: translate(-50%,-50%);
+    width: 100%;
+    text-align: center;
+    height: 60%;
+    backdrop-filter: blur(5px);
+    height: 100%;
+}
+.consumer-login label 
+{
+    font-size: 0.8em;
+}
+.consumer-login form 
+{
+    color: #fff;    
+}
+.consumer-login form input, .create form input
+{
+    height: 30px;
+    width: 80%;
+    text-align: center;
+    outline: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.consumer-login form a
+{
+    position: absolute;
+    left: 60%;
+    color: #fff;
+    text-decoration: underline;
+    margin-top: 50%;
+    font-size: 0.8em;
+}
+.consumer-login h2 
+{
+    color: #fff;
+    opacity: 80%;
+    margin-top: 30%;
+    margin-bottom: 40px;
+}
+.consumer-login .goback, .create .goback
+{
+    position: absolute;
+    left: 10%;
+    text-decoration: underline;
+}
+.consumer-login button , .create button
+{
+    background: #f1f1f1;
+    padding: 10px 20px;
+    font-family: "Poppins", sans-serif;
+    outline: none;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#home
+{
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #fff;
+    opacity: 0;
+}
+.create 
+{
+    position: absolute;
+    top: 150%;
+    left: 300%;
+    transform: translate(-50%,-50%);
+    width: 100%;
+    text-align: center;
+    backdrop-filter: blur(5px);
+    color: #fff;
+    height: 80%;
+}
+.create h2{
+    opacity: 80%;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+.create form a
+{
+    margin-top: 30%;
+    margin-bottom: 50px;
+    color: #fff;
 }

@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
     <title>Select Occupation</title>
     <link rel="stylesheet" href="occ.css">
-    <script src="occ.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"></script>
 </head>
 <body>
+    <h5 id="home">hello</h5>
     <div class="spinner"></div>
     <img src="https://wallpaperbat.com/img/788156-farm-machinery-wallpaper-hd-massey-ferguson-wallpaper-hd-1920x1080-wallpaper-teahubio.jpg" class="bg-img">
     <h1>Choose category</h1>
@@ -17,10 +19,69 @@
             <img src="https://i.pinimg.com/736x/0c/27/21/0c2721817c29d656af203e5c2e696555.jpg" class="farmer">
             <p>Farmer</p>
         </div>
-        <div class="consumer1" onclick="consumer()">
+       <a href="#consumer"><div class="consumer1">
             <img src="https://www.shutterstock.com/image-vector/illustration-people-arrow-icon-on-600nw-1094978822.jpg" class="consumer">
             <p>Consumer</p>
-        </div>
+        </div></a> 
     </div>
+
+
+    <div class="consumer-login" id="consumer">
+        <h2>Consumer Login</h2>
+        <form>
+            <label>Enter your username*</label><br>
+            <input placeholder="Username" required type="text" id="username_login"><br>
+
+            <label>Enter your password*</label><br>
+            <input placeholder="Password" required type="text" id="password_login">
+
+            <a href="#" class="goback">Go Back</a>
+            <a href="#newuser">New User? Sign In</a><br>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <div class="create" id="newuser">
+        <h2>Create a new account</h2>
+        <form>
+            <label>Enter your username*</label><br>
+            <input placeholder="Username" required type="text" id="username"><br>
+
+            <label>Enter your password*</label><br>
+            <input placeholder="Password" required type="text" id="password"><br>
+
+            <label>Confirm your password*</label><br>
+            <input placeholder="Confirm password" required type="text" id="confirmpassword"><br>
+
+            <a href="#consumer" class="goback">Go Back</a>
+
+            <button type="submit" onclick="signUp()">Sign Up</button>
+        </form>
+    </div>
+    <script src="occ.js"></script>
+
+    <script>
+        function signUp() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+          
+            if (password !== confirmPassword) {
+              alert("Passwords do not match!");
+              return;
+            }
+          
+            firebase.auth().createUserWithEmailAndPassword(username, password)
+              .then((userCredential) => {
+                console.log("User signed up:", userCredential.user);
+                alert("Sign-up successful!");
+              })
+              .catch((error) => {
+                console.error("Error during sign-up:", error.message);
+                alert(error.message);
+              });
+          }
+    </script>
 </body>
 </html>
