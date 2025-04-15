@@ -208,3 +208,44 @@ h1
     margin-bottom: 50px;
     color: #fff;
 }
+#message 
+{
+    position: absolute;
+    top: 90%;
+    left: 300%;
+    transform: translate(-50%,-50%);
+    width: 100%;
+    padding: 20px;
+    font-size: 0.9em;
+    text-align: center;
+    background: #fff;
+    font-weight: 600;
+    transition: 1.5s;
+    opacity: 0;
+}
+#message_login 
+{
+    position: absolute;
+    top: 10%;
+    left: 300%;
+    transform: translate(-50%,-50%);
+    width: 100%;
+    padding: 20px;
+    font-size: 0.9em;
+    text-align: center;
+    background: #fff;
+    font-weight: 600;
+    transition: 0.5s;
+    opacity: 0;
+}
+.message_movement
+{
+    margin-top: 50px;
+    animation: fade-off 5s linear;
+    opacity: 0;
+}
+@keyframes fade-off
+{
+    0%{opacity: 1;}
+    100%{opacity: 0;}
+}

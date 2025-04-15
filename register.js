@@ -82,3 +82,4 @@ window.onload = function () {
 });
   recaptchaVerifier.render();
 };
+

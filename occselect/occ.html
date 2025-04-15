@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
     <title>Select Occupation</title>
     <link rel="stylesheet" href="occ.css">
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"></script>
+    <!-- <script src="occ.js"></script> -->
 </head>
 <body>
     <h5 id="home">hello</h5>
@@ -33,12 +32,12 @@
             <input placeholder="Username" required type="text" id="username_login"><br>
 
             <label>Enter your password*</label><br>
-            <input placeholder="Password" required type="text" id="password_login">
+            <input placeholder="Password" required type="password" id="password_login">
 
             <a href="#" class="goback">Go Back</a>
             <a href="#newuser">New User? Sign In</a><br>
 
-            <button type="submit">Login</button>
+            <button type="submit" onclick="login()">Login</button>
         </form>
     </div>
 
@@ -49,39 +48,105 @@
             <input placeholder="Username" required type="text" id="username"><br>
 
             <label>Enter your password*</label><br>
-            <input placeholder="Password" required type="text" id="password"><br>
+            <input placeholder="Password" required type="password" id="password"><br>
 
             <label>Confirm your password*</label><br>
-            <input placeholder="Confirm password" required type="text" id="confirmpassword"><br>
+            <input placeholder="Confirm password" required type="password" id="confirmpassword"><br>
 
             <a href="#consumer" class="goback">Go Back</a>
 
-            <button type="submit" onclick="signUp()">Sign Up</button>
+            <button type="button" onclick="signUp()">Sign Up</button>
         </form>
     </div>
-    <script src="occ.js"></script>
 
+    <div id="message" class="message"></div>
+    <div id="message_login"></div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-auth-compat.js"></script>
+    
     <script>
+        function farmer()
+        {
+            window.location.href="../login.html"
+        }
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyCaQOphF1F_q6HmU5hmxZOgJqwub1AAlLg",
+            authDomain: "farmer-username-login.firebaseapp.com",
+            projectId: "farmer-username-login",
+            storageBucket: "farmer-username-login.firebasestorage.app",
+            messagingSenderId: "855276765141",
+            appId: "1:855276765141:web:78f5776350798c8bf4875c"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
         function signUp() {
-            const username = document.getElementById("username").value;
-            const password = document.getElementById("password").value;
-            const confirmPassword = document.getElementById("confirmPassword").value;
-          
-            if (password !== confirmPassword) {
-              alert("Passwords do not match!");
-              return;
-            }
-          
-            firebase.auth().createUserWithEmailAndPassword(username, password)
-              .then((userCredential) => {
-                console.log("User signed up:", userCredential.user);
-                alert("Sign-up successful!");
-              })
-              .catch((error) => {
-                console.error("Error during sign-up:", error.message);
-                alert(error.message);
-              });
-          }
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+  const confirmPassword = document.getElementById("confirmpassword").value;
+  const messageDiv = document.getElementById("message");
+  message.classList.add("message_movement");
+
+  if (password !== confirmPassword) {
+    messageDiv.innerHTML = "❌ Passwords do not match!";
+    messageDiv.style.color = "red";
+    return;
+  }
+
+  const fakeEmail = username + "@myapp.local"; // fake email
+
+  auth.createUserWithEmailAndPassword(fakeEmail, password)
+    .then((userCredential) => {
+      messageDiv.innerHTML = "✅ Sign-up successful!";
+      messageDiv.style.color = "green";
+      console.log("Username:", username);
+    })
+    .catch((error) => {
+      // Handle specific error for existing user ID (email already in use)
+      if (error.code === 'auth/email-already-in-use') {
+        messageDiv.innerHTML = "❌ User ID already exists!";
+        messageDiv.style.color = "red";
+      } else {
+        // Handle other errors
+        messageDiv.innerHTML = "Error: " + error.message;
+        messageDiv.style.color = "red";
+      }
+    });
+}
+
+
+function login() {
+        const username = document.getElementById("username_login").value;
+        const password = document.getElementById("password_login").value;
+        const messageDiv = document.getElementById("message_login");
+        messageDiv.style.opacity="100%";
+
+        const fakeEmail = username + "@myapp.local"; // Convert username to fake email
+
+        auth.signInWithEmailAndPassword(fakeEmail, password)
+            .then((userCredential) => {
+                messageDiv.innerHTML = "✅ Login successful!";
+                messageDiv.style.color = "green";
+                console.log("Logged in as:", username);
+                // Redirect or take further action after successful login
+            })
+            .catch((error) => {
+                if (error.code === 'auth/user-not-found') {
+                    messageDiv.innerHTML = "❌ User does not exist, try checking the username!";
+                    messageDiv.style.color = "red";
+                } else if (error.code === 'auth/wrong-password') {
+                    messageDiv.innerHTML = "❌ Incorrect password, try again!";
+                    messageDiv.style.color = "red";
+                } else {
+                    // Handle other errors (like network issues)
+                    messageDiv.innerHTML = "Error: " + error.message;
+                    messageDiv.style.color = "red";
+                }
+            });
+    }
     </script>
 </body>
-</html>
+</html> 
