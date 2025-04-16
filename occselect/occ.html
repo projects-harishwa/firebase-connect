@@ -128,14 +128,14 @@ function login() {
         const messageDiv = document.getElementById("message_login");
         messageDiv.style.opacity="100%";
 
-        const fakeEmail = username + "@myapp.local"; // Convert username to fake email
+        const fakeEmail = username + "@myapp.local"; // Converting username to fake email
 
         auth.signInWithEmailAndPassword(fakeEmail, password)
             .then((userCredential) => {
                 messageDiv.innerHTML = "✅ Login successful!";
                 messageDiv.style.color = "green";
                 console.log("Logged in as:", username);
-                // Redirect or take further action after successful login
+                // Redirecting or take further action after successful login: (yet to be done)
             })
             .catch((error) => {
                 if (error.code === 'auth/user-not-found') {
