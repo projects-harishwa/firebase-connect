@@ -1,10 +1,10 @@
 const firebaseConfig = {
-  apiKey: "AIzaSyCnaFMjYDeq0bzT3uMbTXhzn_Fiad47Cag",
-  authDomain: "login-famer-s.firebaseapp.com",
+  apiKey: "your api key",
+  authDomain: "authdomain",
   projectId: "login-famer-s",
-  storageBucket: "login-famer-s.firebasestorage.app",
-  messagingSenderId: "154725592638",
-  appId: "1:154725592638:web:36dd1fabdfd27ac3e9ab6f"
+  storageBucket: "wrt",
+  messagingSenderId: "senderID",
+  appId: "appID"
 };
 
 // Initialize Firebase
